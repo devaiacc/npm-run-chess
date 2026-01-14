@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>npm run chess</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1 class="ascii-title">npm run chess</h1>
+                <div class="contract-box">
+                    <a href="#" id="contract-link" target="_blank" class="contract-address">Loading...</a>
+                    <button class="copy-btn" id="copy-contract" title="Copy">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                    </button>
+                </div>
+                <a href="#" id="dev-link" target="_blank" class="dev-link">Developer & X</a>
+            </div>
+            <div class="header-stats">
+                <div class="stat-box">
+                    <span class="stat-label">Round</span>
+                    <span class="stat-value" id="round">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Total Time</span>
+                    <span class="stat-value" id="total-time">00:00</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Status</span>
+                    <span class="stat-value" id="game-status">Starting...</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-area">
+            <div class="side-panel white-panel">
+                <div class="panel-header">
+                    <div class="color-dot white-dot"></div>
+                    <span class="panel-title">WHITE</span>
+                </div>
+                <div class="ai-name" id="white-ai-name">Loading...</div>
+                <div class="thinking-badge" id="white-thinking-badge">
+                    <span class="thinking-dot"></span>
+                    <span>THINKING</span>
+                </div>
+                
+                <div class="stat-row">
+                    <span class="stat-label">Moves</span>
+                    <span class="stat-val" id="white-moves">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-val" id="white-total-time">0s</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Avg</span>
+                    <span class="stat-val" id="white-avg-time">0ms</span>
+                </div>
+                <div class="stat-row current">
+                    <span class="stat-label">Now</span>
+                    <span class="stat-val" id="white-current-thinking">-</span>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="section-label">Captured</div>
+                <div class="captured-pieces" id="white-captured">
+                    <span class="no-captures">-</span>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="section-label">Moves</div>
+                <div class="moves-list" id="white-moves-list"></div>
+
+                <div class="commentary-section">
+                    <div class="commentary-label">
+                        <span class="thinking-icon" id="white-thinking-icon"></span>
+                        <span>AI Commentary</span>
+                    </div>
+                    <div class="commentary-text" id="white-commentary">Waiting for game to start...</div>
+                </div>
+            </div>
+
+            <div class="center-area">
+                <button class="mobile-toggle" id="mobile-toggle">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                    <span>Show AI Logs</span>
+                </button>
+                <div class="board-container">
+                    <div id="chess-board-3d"></div>
+                    <div id="chess-board"></div>
+                    <div class="game-alert" id="game-alert"></div>
+                </div>
+                <div class="ai-log-section">
+                    <div class="log-header">
+                        <span class="log-title">AI Thinking Log</span>
+                    </div>
+                    <div class="ai-log" id="ai-log"></div>
+                </div>
+            </div>
+
+            <div class="side-panel black-panel">
+                <div class="panel-header">
+                    <div class="color-dot black-dot"></div>
+                    <span class="panel-title">BLACK</span>
+                </div>
+                <div class="ai-name" id="black-ai-name">Loading...</div>
+                <div class="thinking-badge" id="black-thinking-badge">
+                    <span class="thinking-dot"></span>
+                    <span>THINKING</span>
+                </div>
+                
+                <div class="stat-row">
+                    <span class="stat-label">Moves</span>
+                    <span class="stat-val" id="black-moves">0</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-val" id="black-total-time">0s</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Avg</span>
+                    <span class="stat-val" id="black-avg-time">0ms</span>
+                </div>
+                <div class="stat-row current">
+                    <span class="stat-label">Now</span>
+                    <span class="stat-val" id="black-current-thinking">-</span>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="section-label">Captured</div>
+                <div class="captured-pieces" id="black-captured">
+                    <span class="no-captures">-</span>
+                </div>
+
+                <div class="section-divider"></div>
+                <div class="section-label">Moves</div>
+                <div class="moves-list" id="black-moves-list"></div>
+
+                <div class="commentary-section">
+                    <div class="commentary-label">
+                        <span class="thinking-icon" id="black-thinking-icon"></span>
+                        <span>AI Commentary</span>
+                    </div>
+                    <div class="commentary-text" id="black-commentary">Waiting for game to start...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="main.js"></script>
+    <script src="chess3d.js"></script>
+</body>
+</html>
